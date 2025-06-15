@@ -113,4 +113,29 @@ class Unit
 		//	Return new instance.
 		return new $class();
 	}
+
+	/**	Return already instantiated instance that unit name.
+	 *
+	 * <pre>
+	 * OP()->Unit()->Instantiated('unit_name');
+	 * </pre>
+	 *
+	 * @created  2019-09-18
+	 * @renamed  2024-03-20  Singleton() --> Instantiated()
+	 * @param    string      $name
+	 * @return  &IF_UNIT     $unit
+	 */
+	static function & Instantiated(string $name) : IF_UNIT
+	{
+		//	...
+		static $_unit;
+
+		//	...
+		if( empty($_unit[$name]) ){
+			$_unit[$name] = self::Instantiate($name);
+		}
+
+		//	...
+		return $_unit[$name];
+	}
 }
