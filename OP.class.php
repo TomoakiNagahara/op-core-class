@@ -27,4 +27,8 @@ namespace OP;
  */
 class OP
 {
+	/**	use trait.
+	 *
+	 */
+	use OP_CORE;
 }
