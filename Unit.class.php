@@ -36,4 +36,8 @@ namespace OP;
  */
 class Unit
 {
+	/**	trait
+	 *
+	 */
+	use OP_CORE, OP_CI;
 }
