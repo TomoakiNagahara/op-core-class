@@ -26,4 +26,8 @@ namespace OP;
  */
 class Error
 {
+	/**	use
+	 *
+	 */
+	use OP_ERROR;
 }
