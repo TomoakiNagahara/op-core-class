@@ -89,4 +89,28 @@ class Unit
 		//	Return result.
 		return file_exists($path);
 	}
+
+	/**	Return always new instance.
+	 *
+	 * @param  string $name
+	 * @return object
+	 */
+	static function Instantiate(string $name) : IF_UNIT
+	{
+		//	Automatically load unit.
+		if(!self::Load($name)){
+			return false;
+		}
+
+		//	Generate name space path.
+		$class = '\OP\UNIT\\'.$name;
+
+		//	Instantiate.
+		if(!class_exists($class, true) ){
+			throw new \Exception("Has not been exists class. ($class)", []);
+		}
+
+		//	Return new instance.
+		return new $class();
+	}
 }
