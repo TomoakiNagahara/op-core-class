@@ -14,3 +14,26 @@
  *
  */
 namespace OP;
+
+/**	Unit
+ *
+ * <pre>
+ * //	Get instance.
+ * $obj = Unit::Instance('UnitName');
+ *
+ * //	Load static class.
+ * \OP\Unit::Load('unit_name');
+ *
+ * //	Use static class.
+ * $val = \OP\UNIT\NAME::Get();
+ * </pre>
+ *
+ * @created    2016-11-28
+ * @version    1.0
+ * @package    op-core
+ * @author     Tomoaki Nagahara
+ * @copyright  Tomoaki Nagahara All right reserved.
+ */
+class Unit
+{
+}
