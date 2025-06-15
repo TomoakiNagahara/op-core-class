@@ -31,4 +31,5 @@ class OP
 	 *
 	 */
 	use OP_CORE;
+	use OP_CI;
 }
