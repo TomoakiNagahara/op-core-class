@@ -40,4 +40,39 @@ class Unit
 	 *
 	 */
 	use OP_CORE, OP_CI;
+
+	/**	Load of unit controller.
+	 *
+	 * @created    2016-11-28
+	 * @updated    2019-06-13  To simplified.
+	 * @param      string      $name
+	 * @return     boolean     true is successful.
+	 */
+	static function Load(string $name) : bool
+	{
+		//	...
+		if( class_exists("\OP\UNIT\{$name}", false) ){
+			return true;
+		}
+
+		//	...
+		$dir  = _ROOT_ASSET_ . 'unit/' . strtolower($name) . '/';
+		$path = $dir . 'index.php';
+
+		//	...
+		if(!file_exists($dir) ){
+			$meta_path = 'git:/asset/unit/' . strtolower($name);
+			Error::Set("The `{$name}` unit is not installed: `{$meta_path}`", debug_backtrace());
+			return false;
+		}
+
+		//	...
+		if(!file_exists($path) ){
+			Error::Set("The `index.php` file does not exist: `$path`", debug_backtrace());
+			return false;
+		};
+
+		//	...
+		return require_once($path);
+	}
 }
