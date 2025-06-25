@@ -216,6 +216,8 @@ class DebugBacktrace
 
 			case 'string':
 				$arg = str_replace(["\r","\n","\t"],['\r','\n','\t'], $arg);
+				$arg = OP()->Encode($arg);
+				$arg = trim($arg, "'");
 				$arg = '"'.$arg.'"';
 				break;
 
@@ -233,6 +235,6 @@ class DebugBacktrace
 		}
 
 		//  ...
-		return OP()->Encode($arg);
+		return $arg;
 	}
 }
