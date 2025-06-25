@@ -87,7 +87,7 @@ class DebugBacktrace
 	 *
 	 * @param   array   $backtrace
 	 */
-	static function Auto( array $backtrace=[] )
+	static function Auto( $backtrace=null )
 	{
 		//  ...
 		if( empty($backtrace) ){
