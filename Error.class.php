@@ -29,5 +29,6 @@ class Error
 	/**	use
 	 *
 	 */
+	use OP_CORE, OP_CI;
 	use OP_ERROR;
 }
