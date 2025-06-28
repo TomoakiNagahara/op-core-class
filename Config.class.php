@@ -64,57 +64,26 @@ class Config
 	 */
 	static private function _Fetch(string $name)
 	{
-		//	Static variable.
-		static $_asset_root, $_config_dir;
-
-		//	Init static variable.
-		if(!$_asset_root ){
-			//	Get asset root path.
-			$_asset_root = _ROOT_ASSET_;
-
-			//	Generate config directory.
-			$_config_dir = "{$_asset_root}config/";
-		}
-
 		//	Initialize to avoid an infinite loop.
 		self::$_config[$name] = [];
 
 		//	Include closure function.
 		$include = function($path){ return include($path); };
 
-		//	Ignore "unit" config. --> Got to infinity loop.
-		if( $name !== 'unit' ){
-
-			//	Generate file path.
-			$path = $_asset_root . "unit/{$name}/config.php";
-
-			//	Check exists.
-			if( file_exists($path) ){
-				//	Load the config file that each unit has by default.
-				self::$_config[$name] = $include($path);
-			}
-		}
-
-		//	Get current directory.
-		$save_directory = getcwd();
-
-		//	Check if config directory exists.
-		if( file_exists($_config_dir) ){
-
-			//	Change config directory.
-			chdir($_config_dir);
-
-			//	Correspond to overwrite public config at privete local config.
+			//	Correspond to overwrite public config at private local config.
 			//	  --> config.php --> _config.php
 			foreach([$name, "_{$name}"] as $file_name){
+
 				//	Check if file exists.
-				if( file_exists($path = "{$file_name}.php") ){
+				if( file_exists($path = _ROOT_ASSET_ . "/config/{$file_name}.php") ){
+
 					//	Include config.
 					$config = $include($path);
 
 					//	Check if an array.
 					if( gettype($config) !== 'array' ){
-						Error::Set("This file does not return an array. `{$path}`");
+						$path = OP::Path($path);
+						Error::Set("This file does not return an array: {$path}");
 						continue;
 					}
 
@@ -124,29 +93,17 @@ class Config
 					 *  array_merge_recursive() is number index is renumbering.
 					 *
 					 */
-					self::$_config[$name] = isset(self::$_config[$name]) ? array_replace_recursive(self::$_config[$name], $config) : $config;
-
-					//	Escape.
-					continue;
-				}
-
-				//	Check if under score file. --> _config.php
-				if( $file_name[0] === '_'  ){
-					continue;
+					self::$_config[$name] = array_replace_recursive(self::$_config[$name], $config);
 				}
 			}
-		}
-
-		//	Recovery save directory.
-		chdir($save_directory);
 
 		//	...
 		if( empty(self::$_config[$name]) ){
 			//	...
-			if( !file_exists( "{$_asset_root}config/{$name}.php") and
-				!file_exists( "{$_asset_root}layout/{$name}/config.php") and
-				!file_exists( "{$_asset_root}unit/{$name}/config.php") ){
-				Error::Set("This config file does not exists. ($name)");
+			if( !file_exists( _ROOT_ASSET_."/config/{$name}.php") and
+				!file_exists( _ROOT_ASSET_."/layout/{$name}/config.php") and
+				!file_exists( _ROOT_ASSET_."/unit/{$name}/config.php") ){
+				Error::Set("This config file does not exists: $name");
 			}
 		}
 	}
