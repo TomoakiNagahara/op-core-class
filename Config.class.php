@@ -1,10 +1,9 @@
 <?php
 /**	op-core-class:/Config.class.php
  *
+ * Purpose: Want to combine Env::Get()/Set() and Unit::Config().
+ *
  * @created    2019-12-27
- * @version    1.0
- * @package    op-core
- * @subpackage class
  * @author     Tomoaki Nagahara
  * @copyright  Tomoaki Nagahara All right reserved.
  */
