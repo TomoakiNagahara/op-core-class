@@ -408,7 +408,7 @@ class EMail
 			$boundary = "--onepiece-framework--Boundary--" . uniqid("b");
 			*/
 			$subject  = $this->_get_subject();
-			$unique   = Env::isCi() ? 'ci': md5($subject);
+			$unique   = OP::isCi() ? 'ci': md5($subject);
 			$boundary = "--boundary--" . $unique;
 		}
 		return $boundary;
@@ -524,7 +524,7 @@ class EMail
 		$this->_head[$key][] = $head;
 	}
 
-	/**	Set error messge for developer.
+	/**	Set error message for developer.
 	 *
 	 * @param string $message
 	 */
