@@ -235,6 +235,6 @@ class DebugBacktrace
 		}
 
 		//  ...
-		return $arg;
+		return OP::isShell() ? trim(escapeshellarg($arg), "'") : Encode($arg);
 	}
 }
