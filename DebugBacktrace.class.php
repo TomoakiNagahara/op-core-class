@@ -63,14 +63,7 @@ class DebugBacktrace
 	{
 		//	...
 		if( $file ){
-			if( strpos($file, _ROOT_GIT_) === 0 ){
-				$file = 'git:' . substr($file, strlen(_ROOT_GIT_));
-			}
-			/*
-			if( $temp = CompressPath($file) ){
-				$file = $temp;
-			}
-			*/
+			$file = OP::Path($file);
 		}
 
 		//	...
