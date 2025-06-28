@@ -1,5 +1,5 @@
 <?php
-/**	op-core:/Encrypt.class.php
+/**	op-core-class:/Encrypt.class.php
  *
  * @created    2017-11-22
  * @author     Tomoaki Nagahara
@@ -44,7 +44,7 @@ class Encrypt
 	 */
 	static private function _iv()
 	{
-		$source = $_SERVER["_OP_OPENSSL_IV_"] ?? Env::AppID();
+		$source = $_SERVER["_OP_OPENSSL_IV_"] ?? OP::AppID();
 		$source = md5($source);
 		return substr($source, 0, 16);
 	}
@@ -54,7 +54,7 @@ class Encrypt
 	 */
 	static private function _password()
 	{
-		$source = $_SERVER["_OP_OPENSSL_PASSWORD_"] ?? Env::AppID();
+		$source = $_SERVER["_OP_OPENSSL_PASSWORD_"] ?? OP::AppID();
 		$source = md5($source);
 		return $source;
 	}
