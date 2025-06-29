@@ -150,7 +150,7 @@ class EMail
 	function Attachment(string $file_path, ?string $mime=null, ?string $file_name=null)
 	{
 		if(!file_exists($file_path)){
-			throw OpException("Does not exists this file. ($file_path)");
+			throw new \Exception("This file does not exist: $file_path");
 		}
 		$content = file_get_contents($file_path);
 
