@@ -91,8 +91,8 @@ class Cookie
 	static function Set($key, $val, $expire=null, $option=null)
 	{
 		//	...
-		if( Env::isShell() ){
-			Notice::Set('Cookie can not be used in the shell environment.');
+		if( OP::isShell() ){
+			Error::Set('Cookie can not be used in the shell environment.');
 			return;
 		}
 
@@ -107,7 +107,7 @@ class Cookie
 
 		//	Failed.
 		if( headers_sent($file, $line) ){
-			Notice::Set("Header has already been sent. ($file, $line)");
+			Error::Set("Header has already been sent. ($file, $line)");
 			return false;
 		}
 
@@ -166,7 +166,7 @@ class Cookie
 			//	Successful.
 			$_COOKIE[$key] = $val;
 		}else{
-			Notice::Set("Set cookie was failed.");
+			Error::Set("Set cookie was failed.");
 		}
 
 		//	...
