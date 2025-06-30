@@ -99,15 +99,15 @@ class Unit
 	{
 		//	Automatically load unit.
 		if(!self::Load($name)){
-			return false;
+			throw new \Exception("This unit could not be loaded: $name");
 		}
 
 		//	Generate name space path.
 		$class = '\OP\UNIT\\'.$name;
 
-		//	Instantiate.
+		//	Check if class include.
 		if(!class_exists($class, true) ){
-			throw new \Exception("Has not been exists class. ($class)", []);
+			throw new \Exception("This class could not be the included: $class");
 		}
 
 		//	Return new instance.
