@@ -44,8 +44,8 @@ class Cookie
 	static function Get($key, $default=null)
 	{
 		//	...
-		if( Env::isShell() ){
-			Notice('Cookie can not be used in the shell environment.');
+		if( OP::isShell() ){
+			Error::Set('Cookie can not be used in the shell environment.');
 			return;
 		}
 
