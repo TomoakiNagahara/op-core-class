@@ -62,14 +62,12 @@ class Unit
 		//	...
 		if(!file_exists($dir) ){
 			$meta_path = 'git:/asset/unit/' . strtolower($name);
-			Error::Set("The `{$name}` unit is not installed: `{$meta_path}`", debug_backtrace());
-			return false;
+			throw new \Exception("This unit has not been installed: {$meta_path}");
 		}
 
 		//	...
 		if(!file_exists($path) ){
-			Error::Set("The `index.php` file does not exist: `$path`", debug_backtrace());
-			return false;
+			throw new \Exception("The `index.php` file does not exists: $path");
 		};
 
 		//	...
