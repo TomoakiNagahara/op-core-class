@@ -196,7 +196,7 @@ class Cookie
 	static function UserID(&$init=null)
 	{
 		//	...
-		if( Env::isShell() ){
+		if( OP::isShell() ){
 			return;
 		}
 
