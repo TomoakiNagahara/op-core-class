@@ -34,4 +34,5 @@ class OP
 	use OP_CI;
 	use OP_ENV;
 	use OP_OBJECT;
+	use OP_TEMPLATE;
 }
