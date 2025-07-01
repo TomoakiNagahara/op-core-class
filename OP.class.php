@@ -35,4 +35,5 @@ class OP
 	use OP_ENV;
 	use OP_OBJECT;
 	use OP_TEMPLATE;
+	use OP_ONEPIECE;
 }
