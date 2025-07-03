@@ -6,3 +6,8 @@
  * @author     Tomoaki Nagahara
  * @copyright  Tomoaki Nagahara All right reserved.
  */
+
+/**	Declare strict
+ *
+ */
+declare(strict_types=1);
