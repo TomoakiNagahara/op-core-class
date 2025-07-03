@@ -33,4 +33,5 @@ class Env
 	 *
 	 */
 	use OP_CORE, OP_CI;
+	use OP_ENV;
 }
