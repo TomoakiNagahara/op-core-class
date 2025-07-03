@@ -16,3 +16,17 @@ declare(strict_types=1);
  *
  */
 namespace OP;
+
+/**	Env
+ *
+ * @deprecated 2025-06-16  OP_ENV delegating
+ * @created    2014-01-22  Separated from OnePiece5
+ * @version    1.0
+ * @package    op-core
+ * @subpackage class
+ * @author     Tomoaki Nagahara
+ * @copyright  Tomoaki Nagahara All right reserved.
+ */
+class Env
+{
+}
