@@ -29,4 +29,8 @@ namespace OP;
  */
 class Env
 {
+	/**	trait.
+	 *
+	 */
+	use OP_CORE, OP_CI;
 }
