@@ -40,6 +40,7 @@ class Unit
 	 *
 	 */
 	use OP_CORE, OP_CI;
+	use OP_UNIT_MAPPER;
 
 	/**	Load of unit controller.
 	 *
