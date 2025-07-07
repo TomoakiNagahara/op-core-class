@@ -142,4 +142,13 @@ class Unit
 	 * @var array
 	 */
 	static $_unit = [];
+
+	/*
+	function __destruct()
+	{
+		if( OP::MIME() === 'text/html' ){
+			D(self::$_unit);
+		}
+	}
+	*/
 }
