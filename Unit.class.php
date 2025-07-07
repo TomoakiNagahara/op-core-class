@@ -129,15 +129,12 @@ class Unit
 	static function & Instantiated(string $name) : IF_UNIT
 	{
 		//	...
-		static $_unit;
-
-		//	...
-		if( empty($_unit[$name]) ){
-			$_unit[$name] = self::Instantiate($name);
+		if( empty(self::$_unit[$name]) ){
+			self::$_unit[$name] = self::Instantiate($name);
 		}
 
 		//	...
-		return $_unit[$name];
+		return self::$_unit[$name];
 	}
 
 	/**	Stack the instantiated object.
