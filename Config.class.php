@@ -108,12 +108,13 @@ class Config
 				}
 			}
 
-		//	...
+		//	The config file does not exist or is not configured.
 		if( empty(self::$_config[$name]) ){
-			//	...
-			if( !file_exists( _ROOT_ASSET_."/config/{$name}.php") and
-				!file_exists( _ROOT_ASSET_."/layout/{$name}/config.php") and
-				!file_exists( _ROOT_ASSET_."/unit/{$name}/config.php") ){
+			/* If the layout config file exists.
+			 * Layout config files are not automatically loaded.
+			 * Because it may conflict with the unit name.
+			 */
+			if(!file_exists(_ROOT_ASSET_."/layout/{$name}/config.php") ){
 				Error::Set("This config file does not exists: $name");
 			}
 		}
