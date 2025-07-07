@@ -68,7 +68,20 @@ class Config
 		self::$_config[$name] = [];
 
 		//	Include closure function.
-		$include = function($path){ return include($path); };
+		$include = function( string $path ){
+			//	...
+			$config = include($path);
+
+			//	Check if an array.
+			if( gettype($config) !== 'array' ){
+				$path = OP::Path($path);
+				Error::Set("This file does not return an array: {$path}");
+				$config = [];
+			}
+
+			//	...
+			return $config;
+		};
 
 			//	Correspond to overwrite public config at private local config.
 			//	  --> config.php --> _config.php
@@ -79,13 +92,6 @@ class Config
 
 					//	Include config.
 					$config = $include($path);
-
-					//	Check if an array.
-					if( gettype($config) !== 'array' ){
-						$path = OP::Path($path);
-						Error::Set("This file does not return an array: {$path}");
-						continue;
-					}
 
 					/**	About array merge.
 					 *
