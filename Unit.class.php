@@ -139,4 +139,10 @@ class Unit
 		//	...
 		return $_unit[$name];
 	}
+
+	/**	Stack the instantiated object.
+	 *
+	 * @var array
+	 */
+	static $_unit = [];
 }
