@@ -83,6 +83,11 @@ class Config
 			return $config;
 		};
 
+		//	First, include the unit's default config.
+		if( file_exists( $path = _ROOT_ASSET_."/unit/{$name}/config.php") ){
+			self::$_config[$name] = $include($path);
+		}
+
 			//	Correspond to overwrite public config at private local config.
 			//	  --> config.php --> _config.php
 			foreach([$name, "_{$name}"] as $file_name){
