@@ -64,6 +64,9 @@ class Config
 	 */
 	static private function _Fetch(string $name)
 	{
+		//	...
+		$_file_exists = null;
+
 		//	Initialize to avoid an infinite loop.
 		self::$_config[$name] = [];
 
@@ -85,6 +88,7 @@ class Config
 
 		//	First, include the unit's default config.
 		if( file_exists( $path = _ROOT_ASSET_."/unit/{$name}/config.php") ){
+			$_file_exists = true;
 			self::$_config[$name] = $include($path);
 		}
 
@@ -94,6 +98,8 @@ class Config
 
 				//	Check if file exists.
 				if( file_exists($path = _ROOT_ASSET_ . "/config/{$file_name}.php") ){
+					//	...
+					$_file_exists = true;
 
 					//	Include config.
 					$config = $include($path);
@@ -109,7 +115,7 @@ class Config
 			}
 
 		//	The config file does not exist or is not configured.
-		if( empty(self::$_config[$name]) ){
+			if( empty($_file_exists) ){
 			/* If the layout config file exists.
 			 * Layout config files are not automatically loaded.
 			 * Because it may conflict with the unit name.
