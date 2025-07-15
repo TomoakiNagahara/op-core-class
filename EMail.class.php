@@ -408,7 +408,7 @@ class EMail
 			$boundary = "--onepiece-framework--Boundary--" . uniqid("b");
 			*/
 			$subject  = $this->_get_subject();
-			$unique   = OP::isCi() ? 'ci': md5($subject);
+			$unique   = OP::isCI() ? 'ci': md5($subject);
 			$boundary = "--boundary--" . $unique;
 		}
 		return $boundary;
