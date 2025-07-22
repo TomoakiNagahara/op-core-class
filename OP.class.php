@@ -37,4 +37,12 @@ class OP
 	use OP_TEMPLATE;
 	use OP_ONEPIECE;
 //	use OP_DEPRECATE;
+
+	/**	Constant
+	 *
+	 * @var string
+	 */
+	const _ADMIN_IP_	 = 'admin-ip';
+	const _ADMIN_MAIL_	 = 'admin-mail';
+	const _ADMIN_FROM_	 = 'admin-from';
 }
