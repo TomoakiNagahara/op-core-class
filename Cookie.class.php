@@ -11,6 +11,11 @@
  */
 namespace OP;
 
+/**	include
+ *
+ */
+include_once(__DIR__.'/../function/Hasha1.php');
+
 /**	Cookie
  *
  * FEATURE:
