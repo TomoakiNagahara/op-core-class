@@ -106,7 +106,11 @@ class Cookie
 		}
 
 		//	...
+		if( _OP_APP_BRANCH_ < 2030 ){
 		$app_id  = Env::AppID();
+		}else{
+		$app_id  = _APP_ID_;
+		}
 
 		//	Cache feature
 		$_SESSION[_OP_NAME_SPACE_]['CORE']['COOKIE'][$app_id][$key] = $val;
