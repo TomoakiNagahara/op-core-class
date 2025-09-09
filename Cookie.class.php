@@ -201,7 +201,8 @@ class Cookie
 			'expire'    => [
 				'time'  => $expire,
 				'date'  => gmdate('Y-m-d H:i:s', $expire),
-			]
+			],
+			'option'    => $option,
 		];
 
 		//	...
