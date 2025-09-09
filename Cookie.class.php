@@ -177,6 +177,11 @@ class Cookie
 			if( empty($option['expires']) ){
 				$option['expires'] = $expire;
 			}
+			//	path
+			if( empty($option['path']) ){
+				$option['path'] = OP()->URL('app:/');
+			}
+			//	domain, secure, httponly, samesite
 			$io = setcookie($key, $val, $option);
 		}
 
