@@ -54,6 +54,7 @@ class Cookie
 			return;
 		}
 
+		/*
 		//	...
 		if( _OP_APP_BRANCH_ < 2030 ){
 		$app_id  = Env::AppID();
@@ -65,6 +66,7 @@ class Cookie
 		if( isset( $_SESSION[_OP_NAME_SPACE_]['CORE']['COOKIE'][$app_id][$key] ) ){
 			return $_SESSION[_OP_NAME_SPACE_]['CORE']['COOKIE'][$app_id][$key];
 		}
+		*/
 
 		//	...
 		$key = Hasha1($key, 16);
@@ -105,6 +107,7 @@ class Cookie
 			return;
 		}
 
+		/*
 		//	...
 		if( _OP_APP_BRANCH_ < 2030 ){
 		$app_id  = Env::AppID();
@@ -114,6 +117,7 @@ class Cookie
 
 		//	Cache feature
 		$_SESSION[_OP_NAME_SPACE_]['CORE']['COOKIE'][$app_id][$key] = $val;
+		*/
 
 		//	...
 		$file = $line = null;
