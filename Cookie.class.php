@@ -173,8 +173,10 @@ class Cookie
 			}
 		}else{
 			//	Upper equal 7.3.0
-			//	expires, path, domain, secure, httponly, samesite
-			$option['expires'] = $expire;
+			//	expires
+			if( empty($option['expires']) ){
+				$option['expires'] = $expire;
+			}
 			$io = setcookie($key, $val, $option);
 		}
 
