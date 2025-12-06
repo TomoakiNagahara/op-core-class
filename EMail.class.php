@@ -525,11 +525,13 @@ class EMail
 	 *
 	 * @param string $message
 	 */
-	private function _set_error(string $message)
+	private function _set_error( string $message='' )
 	{
+		if( $message ){
 		$error = [];
 		$error['message'] = $message;
 		$error['backtrace'] = debug_backtrace();
 		$this->_debug['errors'][] = $error;
+		}
 	}
 }
