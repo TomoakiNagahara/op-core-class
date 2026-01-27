@@ -81,6 +81,9 @@ class Unit
 	 */
 	static function isInstalled(string $name) : bool
 	{
+		//	Re:mapping unit name.
+		$name = self::Mapping($name);
+
 		//	Generate target path.
 		$path = _ROOT_ASSET_ . '/unit/' . strtolower($name) . '/index.php';
 
