@@ -7,9 +7,14 @@
  * @license    Apache-2.0
  * @package    op-core
  * @subpackage class
- * @copyright  (C) 2016 Tomoaki Nagahara
+ * @copyright  Tomoaki Nagahara
  *
  */
+
+/**	Declare strict type
+ *
+ */
+declare(strict_types=1);
 
 /**	namespace
  *
