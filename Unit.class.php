@@ -44,6 +44,21 @@ class Unit
 	use OP_CORE, OP_CI;
 	use OP_UNIT_MAPPER;
 
+	/**	Get unit path.
+	 *
+	 * @created    2026-01-28
+	 * @param      string     $name
+	 * @return     string
+	 */
+	static function Path( string $name ) : string
+	{
+		//	Re:mapping unit name.
+		$name = self::Mapping($name);
+
+		//	Return result.
+		return _ROOT_ASSET_ . 'unit/' . strtolower($name) . '/';
+	}
+
 	/**	Load of unit controller.
 	 *
 	 * @created    2016-11-28
