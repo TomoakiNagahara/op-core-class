@@ -113,6 +113,11 @@ class Unit
 			throw new \Exception("This unit could not be loaded: $name");
 		}
 
+		//	Return result of instantiate.php.
+		if( file_exists($path = self::Path($name) . 'instantiate.php') ){
+			return include($path);
+		}
+
 		//	Generate name space path.
 		$class = '\OP\UNIT\\'.$name;
 
