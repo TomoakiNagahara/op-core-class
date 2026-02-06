@@ -66,24 +66,17 @@ class Unit
 	 * @param      string      $name
 	 * @return     boolean     true is successful.
 	 */
-	static function Load(string $name) : bool
+	static function Load(string $name)
 	{
-		//	...
+		//	Check if class exists.
 		if( class_exists("\OP\UNIT\\{$name}", false) ){
 			return true;
 		}
 
-		//	...
-		$dir  = _ROOT_ASSET_ . 'unit/' . strtolower($name) . '/';
-		$path = $dir . 'index.php';
+		//	Generate target path.
+		$path = self::Path($name) . 'index.php';
 
-		//	...
-		if(!file_exists($dir) ){
-			$meta_path = 'git:/asset/unit/' . strtolower($name);
-			throw new \Exception("This unit has not been installed: {$meta_path}");
-		}
-
-		//	...
+		//	Check if file exists.
 		if(!file_exists($path) ){
 			throw new \Exception("The `index.php` file does not exists: $path");
 		};
