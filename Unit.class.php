@@ -66,7 +66,7 @@ class Unit
 	 * @param      string      $name
 	 * @return     boolean     true is successful.
 	 */
-	static function Load(string $name)
+	static function Load(string $name) : bool
 	{
 		//	Check if class exists.
 		if( class_exists("\OP\UNIT\\{$name}", false) ){
@@ -82,7 +82,7 @@ class Unit
 		};
 
 		//	...
-		return require_once($path);
+		return (require_once($path)) ? true: false;
 	}
 
 	/**	Check if that unit is installed.
