@@ -156,6 +156,11 @@ class Config
 		 */
 		//	self::$_env[$key] = array_merge_recursive(self::$_env[$key], $var);
 		if( $config ){
+			//	Check if assoc or array.
+			if( isset($config[0]) ){
+				OP()->Error("The passed variable is an array, not an associative array: {$name}");
+			}
+
 			//	...
 			if( self::$_config[$name] === null ){
 				self::$_config[$name]  =  [];
