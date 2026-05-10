@@ -21,6 +21,20 @@
 - `OP_ONEPIECE`
 - `OP_DEPRECATE`
 
+## なぜここで `OP_ENV` を use するのか
+
+`OP_ENV` を `\OP\OP` で use している理由は、もともと `Env.class.php` 経由で到達していた環境関連 method 群を、今は `OP()` から直接呼べるようにするためです。
+
+これは 2030 世代の簡素化の一部です。
+
+- 古い世代では、それらの method は `Env.class.php` 配下にまとまっていた
+- 新しい世代では、その method 群を `OP_ENV` に移す
+- `\OP\OP` が `OP_ENV` を use することで、`OP()->isAdmin()` や `OP()->isLocalhost()` のような直接呼び出しが可能になる
+
+同時に、`OP()->Env()` のような互換 access は `OP_DEPRECATE` によって別経路で維持されます。
+
+つまり、`OP_ENV` を `\OP\OP` が use していることは、移行期間中に両方の style を共存させる中核的な理由のひとつです。
+
 ## 意味
 
 `\OP\OP` は、自身の class body にすべての実装を書くのではなく、trait を通じて振る舞いを集約しています。
