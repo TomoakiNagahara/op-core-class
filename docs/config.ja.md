@@ -14,6 +14,64 @@
 
 後段の層は、`array_replace_recursive()` により前段の設定を上書きします。
 
+config name は読み込み前に lowercase に正規化されます。
+たとえば `Config::Get('CI')` と `Config::Get('ci')` は、同じ internal config key を対象にします。
+
+configuration は lazy-load されます。
+ある name に対する最初の `Get()` または `Set()` で、その config が初期化され `Config::$_config` に cache されます。
+以後の call は、その cached value を返すか、そこへ merge します。
+
+## 現行の読込範囲
+
+現行の `Config.class.php` 実装が自動で読み込む default config は UNIT だけです。
+
+```text
+asset/unit/<name>/config.php
+```
+
+次の MODULE default config は自動では読み込みません。
+
+```text
+asset/module/<name>/config.php
+```
+
+これは意図的な仕様です。
+同名 UNIT が無い場合だけ MODULE default config が自動で読まれる仕様にすると、開発者は MODULE config が読まれる場合と読まれない場合を覚える必要があります。
+その inconsistent mental model を避けるため、MODULE default config は `Config::Get($name)` では自動読み込みしません。
+
+MODULE が default settings を同梱する場合は、それを template として `asset/module/<module-name>/config.php` に置きます。
+user は MODULE config を有効化または変更したい時に、その file を `asset/config/<module-name>.php` へ明示的に copy します。
+これにより、runtime config の ownership は自動解決ではなく application config area に見える形で残ります。
+
+## Layout config の例外
+
+layout config file は `Config::Get($name)` により自動読み込みされません。
+
+次の file が存在しても、
+
+```text
+asset/layout/<name>/config.php
+```
+
+`Config::Get($name)` はそれを読み込みません。
+layout name は unit config name と conflict する可能性があるため、実装はこの場合に missing-config error を抑制するだけです。
+
+## config が存在しない場合
+
+supported config file が 1 つも存在しない場合、`Config::Get($name)` は error を記録します。
+
+```text
+This config file does not exists: <name>
+```
+
+method 自体は cached config value を返します。この値は空配列として初期化されています。
+
+## file return contract
+
+config file は array を返す必要があります。
+
+include した config file が array 以外を返した場合、framework は error を記録し、その layer を空配列として扱います。
+
 ## private local override pattern
 
 `_` で始まるファイルは、built-in の local override 機構です。
@@ -81,3 +139,17 @@ repository 運用の practical technique として、`_` で始まる file や d
 - `array_replace_recursive()`
 
 そのため、`_` override file は、前段の同名 key を置き換えつつ、無関係な key は保持します。
+
+`Config::Set($name, $config)` も同じ merge behavior を使います。
+必要であれば先に target config を初期化し、渡された associative array を cached config に merge します。
+
+numeric array を `Config::Set()` に渡すのは invalid です。
+`$config[0]` が存在する場合、config update は associative array であるべきとして error を記録します。
+
+## `OP()->Config()` wrapper
+
+`OP()->Config()` と `OP::Config()` は、この class の wrapper です。
+
+- `OP()->Config('name')` は `Config::Get('name')` を呼びます。
+- `OP()->Config('name', ['key' => 'value'])` は `Config::Set('name', ...)` を呼びます。
+- `OP()->Config()` は `Config` instance を返します。
