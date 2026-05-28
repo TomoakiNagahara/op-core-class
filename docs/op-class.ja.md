@@ -49,6 +49,11 @@
 - `OP()` の背後にある object
 - core 機能や helper method をまとめた access surface
 
+## 関連 method 文書
+
+- `asset/core/class/docs/op-class-session.md`
+  `OP()->Session()` の現行 As-Is の挙動。
+
 ## まとめ
 
 `\OP\OP` は `OP()` から返される class であり、trait ベースの構成によって framework 機能を公開します。

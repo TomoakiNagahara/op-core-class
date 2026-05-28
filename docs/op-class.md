@@ -49,6 +49,11 @@ In practical use, `\OP\OP` represents:
 - the object behind `OP()`
 - the composed access surface for core features and helper methods
 
+## Related Method Documents
+
+- `asset/core/class/docs/op-class-session.md`
+  Current As-Is behavior of `OP()->Session()`.
+
 ## Summary
 
 `\OP\OP` is the class returned by `OP()`, and it exposes framework capabilities through trait-based composition.
